@@ -25,7 +25,8 @@ public class GameWarden : MonoBehaviour
 
     public Dictionary<TileType,int> TileCounts = new Dictionary<TileType,int>();
 
-    Grid _grid;
+    public Grid _grid;
+
 
     void Start()
     {
