@@ -1,37 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameWarden : MonoBehaviour
 {
-    // public Sprite[] TileSprites;
+    public int Chitin;
+    public int Crystal;
+    public int Gold;
 
-    Grid grid;
+    public TextMeshProUGUI MushroomCount;
+    public TextMeshProUGUI CrystalCount;
 
-    int chitin;
-    int stone;
-    int gold;
+    Grid _grid;
 
     void Start()
     {
         float cellSize = Screen.height / 100 / 4.75f;
-        this.grid = new Grid(10,6,cellSize,this.gameObject.transform);
-        grid.Print();
+        this._grid = new Grid(10,6,cellSize,this.gameObject.transform,this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
-    void GatherChitin(int mushrooms)
+    public void GatherChitin(int mushrooms)
     {
-        chitin += mushrooms;
+        Chitin += mushrooms;
+        MushroomCount.SetText(Chitin.ToString());
     }
 
-    void GatherStone(int rocks)
+    public void GatherCrystal(int rocks)
     {
-        stone += rocks;
+        Crystal += rocks;
+        CrystalCount.SetText(Crystal.ToString());
     }
 }

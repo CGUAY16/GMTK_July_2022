@@ -8,12 +8,14 @@ public class Grid
     private int _height;
     private Tile[,] _gridArray;
     private float _cellSize;
+    private GameWarden _gameWarden;
 
-    public Grid (int width, int height, float cellSize, Transform parent)
+    public Grid (int width, int height, float cellSize, Transform parent, GameWarden gameWarden)
     {
         this._width = width;
         this._height = height;
         this._cellSize = cellSize;
+        this._gameWarden = gameWarden;
 
         _gridArray = new Tile[_width, _height];
 
@@ -26,6 +28,7 @@ public class Grid
                 _gridArray[x,y].transform.position = GetWorldPosition(x,y) + new Vector3(_cellSize / 2, _cellSize / 2, 0);
                 _gridArray[x,y].X = x;
                 _gridArray[x,y].Y = y;
+                _gridArray[x,y].GameWarden = _gameWarden;
                 BoxCollider2D col = _gridArray[x,y].gameObject.AddComponent<BoxCollider2D>();
                 col.size = new Vector2(_cellSize, _cellSize);
             }

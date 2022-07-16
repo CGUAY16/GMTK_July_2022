@@ -10,30 +10,29 @@ public class Tile : MonoBehaviour
 
     public int X;
     public int Y;
+    public GameWarden GameWarden;
 
     SpriteRenderer _myRenderer;
     TileType _myType = TileType.Grassland;
-    bool _canRoll;
+    bool _canRoll = true;
 
     void Awake()
     {
         _myRenderer = gameObject.AddComponent<SpriteRenderer>();
         _myRenderer.transform.localPosition = new Vector3(0,0,0);
+        _myRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
     }
 
     void Update()
     {
-        _myRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        Debug.Log("Hovering " + X+""+Y);
+        if (_myType == TileType.Lumberjack && _canRoll)
+            StartCoroutine(WorkTile("chitin"));
+        if (_myType == TileType.Quarry && _canRoll)
+            StartCoroutine(WorkTile("crystal"));
     }
 
     void OnMouseOver()
     {
-        Debug.Log(X+""+Y);
         if(Input.GetMouseButtonDown(0))
         {
             Iterate();
@@ -50,6 +49,7 @@ public class Tile : MonoBehaviour
             _myType++;
         else
             _myType = TileType.Grassland;
+        _myRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
     }
 
     void Deiterate()
@@ -68,8 +68,25 @@ public class Tile : MonoBehaviour
         Debug.Log(grid[X,Y-1]);
     }
 
+    int Roll()
+    {
+        int num = (int)Mathf.Floor(Random.Range(1f,6f));
+        return (int)Mathf.Floor(Random.Range(1f,6f));
+    }
+
     public override string ToString()
     {
         return _myType.ToString();
+    }
+
+    IEnumerator WorkTile(string resource)
+    {
+        _canRoll = false;
+        if (resource == "chitin")
+            GameWarden.GatherChitin(Roll());
+        else
+            GameWarden.GatherCrystal(Roll());
+        yield return new WaitForSeconds(1.5f);
+        _canRoll = true;
     }
 }
