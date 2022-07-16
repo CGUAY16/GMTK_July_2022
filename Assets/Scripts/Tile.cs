@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
-public class Tile : MonoBehaviour, IPointerEnterHandler
+public class Tile : MonoBehaviour
 {
     enum TileType { Grassland, Lumberjack, Quarry, Tavern, Stable, Accountant, Church, Road };
 
@@ -30,18 +31,18 @@ public class Tile : MonoBehaviour, IPointerEnterHandler
         Debug.Log("Hovering " + X+""+Y);
     }
 
-    // void OnMouseOver()
-    // {
-    //     Debug.Log(X+""+Y);
-    //     if(Input.GetMouseButtonDown(0))
-    //     {
-    //         Iterate();
-    //     }
-    //     if(Input.GetMouseButtonDown(1))
-    //     {
-    //         Deiterate();
-    //     }
-    // }
+    void OnMouseOver()
+    {
+        Debug.Log(X+""+Y);
+        if(Input.GetMouseButtonDown(0))
+        {
+            Iterate();
+        }
+        if(Input.GetMouseButtonDown(1))
+        {
+            Deiterate();
+        }
+    }
     
     void Iterate()
     {
