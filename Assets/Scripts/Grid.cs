@@ -13,7 +13,6 @@ public class Grid
     {
         this._width = width;
         this._height = height;
-        this._height = height;
         this._cellSize = cellSize;
 
         _gridArray = new Tile[_width, _height];
