@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Tile : MonoBehaviour
 {
-    enum TileType { Grassland, Lumberjack, Quarry, Tavern, Stable, Accountant, Church, Road };
+    // enum TileType { Grassland, Lumberjack, Quarry, Tavern, Stable, Accountant, Church, Road };
 
     public int X;
     public int Y;
@@ -33,13 +33,15 @@ public class Tile : MonoBehaviour
 
     void OnMouseOver()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            Iterate();
-        }
-        if(Input.GetMouseButtonDown(1))
-        {
-            Deiterate();
+            if (GameWarden.HeldTile!=-1&&GameWarden.HeldTile!=(int)_myType)
+            {
+                _myType = (TileType)GameWarden.HeldTile;
+                _myRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
+                Debug.Log(GameWarden.Register((TileType)GameWarden.HeldTile));
+                GameWarden.ClearHeld();
+            }
         }
     }
     
