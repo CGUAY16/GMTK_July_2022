@@ -144,7 +144,7 @@ public class Tile : MonoBehaviour
         if (resource == "chitin")
         {
             CheckNeighborsForTaverns();
-            GameWarden.GatherChitin(Roll() + tavernNeighborCount);
+            GameWarden.GatherMushwood(Roll() + tavernNeighborCount);
         }
         else
         {
