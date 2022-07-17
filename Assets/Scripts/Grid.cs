@@ -47,6 +47,18 @@ public class Grid
         }
     }
 
+    public void ToggleSprites()
+    {
+        for (int x = 0; x < _gridArray.GetLength(0); x++)
+        {
+            for (int y = 0; y < _gridArray.GetLength(1); y++)
+            {
+                SpriteRenderer _sprite = _gridArray[x,y].GetComponent<SpriteRenderer>();
+                _sprite.enabled = !_sprite.enabled;
+            }
+        }
+    }
+
     private Vector3 GetWorldPosition(int x, int y, bool border=true)
     {
         Vector3 newV = new Vector3(x, y) * _cellSize;
