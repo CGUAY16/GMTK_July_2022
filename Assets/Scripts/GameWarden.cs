@@ -16,7 +16,8 @@ public class GameWarden : MonoBehaviour
     public int StablePrice;
     public int AccountantPrice;
     public int ChurchPrice;
-    public int RoadPrice;
+    public float Timer = 5f;
+    public float TimerReset = 1f;
 
     public TextMeshProUGUI MushroomCount;
     public TextMeshProUGUI CrystalCount;
@@ -42,56 +43,70 @@ public class GameWarden : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
-        // TODO Convert to switch statement
+    {
+        Timer -= Time.deltaTime;
+        if (Timer <= 0)
+            Tax();
+
         if (Input.GetMouseButtonDown(2))
         {
             ClearHeld();
             HeldTile = -1;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1) && Gold >= LumberjackPrice)
+
+        if(HeldTile == -1)
         {
-            HeldTile = 1;
-            HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Lumberjack");
-            RemoveGold(LumberjackPrice);
+            if (Input.GetKeyDown(KeyCode.Alpha1) && Gold >= LumberjackPrice)
+            {
+                HeldTile = 1;
+                HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Lumberjack");
+                RemoveGold(LumberjackPrice);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && Gold >= QuarryPrice)
+            {
+                HeldTile = 2;
+                HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Quarry");
+                RemoveGold(QuarryPrice);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3) && Gold >= TavernPrice)
+            {
+                HeldTile = 3;
+                HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Tavern");
+                RemoveGold(TavernPrice);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4) && Gold >= StablePrice)
+            {
+                HeldTile = 4;
+                HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Stable");
+                RemoveGold(StablePrice);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5) && Gold >= AccountantPrice)
+            {
+                HeldTile = 5;
+                HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Accountant");
+                RemoveGold(AccountantPrice);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha6) && Gold >= ChurchPrice)
+            {
+                HeldTile = 6;
+                HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Church");
+                RemoveGold(ChurchPrice);
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && Gold >= QuarryPrice)
+
+        if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            HeldTile = 2;
-            HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Quarry");
-            RemoveGold(QuarryPrice);
+            Sell();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && Gold >= TavernPrice)
-        {
-            HeldTile = 3;
-            HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Tavern");
-            RemoveGold(TavernPrice);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4) && Gold >= StablePrice)
-        {
-            HeldTile = 4;
-            HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Stable");
-            RemoveGold(StablePrice);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5) && Gold >= AccountantPrice)
-        {
-            HeldTile = 5;
-            HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Accountant");
-            RemoveGold(AccountantPrice);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6) && Gold >= ChurchPrice)
-        {
-            HeldTile = 6;
-            HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Church");
-            RemoveGold(ChurchPrice);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha7) && Gold >= RoadPrice)
-        {
-            HeldTile = 7;
-            HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Road");
-            RemoveGold(RoadPrice);
-        }
-        // Debug.Log(""+TileCounts[(TileType)1]+TileCounts[(TileType)2]+TileCounts[(TileType)3]+TileCounts[(TileType)4]+TileCounts[(TileType)5]+TileCounts[(TileType)6]+TileCounts[(TileType)7]);
+    }
+
+    public void Sell()
+    {
+        AddGold(Mushwood + Crystal);
+        Mushwood = 0;
+        MushroomCount.SetText(Mushwood.ToString());
+        Crystal = 0;
+        CrystalCount.SetText(Crystal.ToString());
     }
 
     public void AddGold(int coins)
@@ -127,5 +142,26 @@ public class GameWarden : MonoBehaviour
     public int Register(TileType tile)
     {
         return ++TileCounts[tile];
+    }
+
+    public void Tax()
+    {
+        Timer = 10f;
+        int taxAmt = (int)Mathf.Floor(100 * (Mathf.Pow(1.01f, Time.time)));
+        if(Gold <= taxAmt)
+        {
+            Debug.Log("0 tax");
+        }
+        else
+        {
+            RemoveGold(taxAmt);
+        }
+        StartCoroutine(Church((int)Mathf.Floor(taxAmt * (0.1f * TileCounts[TileType.Church]))));
+    }
+
+    IEnumerator Church(int amt)
+    {
+        yield return new WaitForSeconds(1f);
+        AddGold(amt);
     }
 }

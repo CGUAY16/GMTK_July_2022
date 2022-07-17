@@ -43,7 +43,7 @@ public class Tile : MonoBehaviour
             {
                 _myType = (TileType)GameWarden.HeldTile;
                 _myRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
-                Debug.Log(GameWarden.Register((TileType)GameWarden.HeldTile));
+                GameWarden.Register((TileType)GameWarden.HeldTile);
                 GameWarden.ClearHeld();
             }
         }
@@ -68,64 +68,64 @@ public class Tile : MonoBehaviour
 
     void CheckNeighborsForTaverns()
     {
-        Debug.Log(GameWarden._grid._gridArray[X + 1,Y]);
-        Debug.Log(GameWarden._grid._gridArray[X + 1,Y + 1]);
-        Debug.Log(GameWarden._grid._gridArray[X, Y + 1]);
-        Debug.Log(GameWarden._grid._gridArray[X - 1,Y + 1]);
-        Debug.Log(GameWarden._grid._gridArray[X - 1,Y]);
-        Debug.Log(GameWarden._grid._gridArray[X - 1,Y - 1]);
-        Debug.Log(GameWarden._grid._gridArray[X,Y - 1]);
-        Debug.Log(GameWarden._grid._gridArray[X + 1,Y - 1]);
-
         tavernNeighborCount = 0;
 
-        if (GameWarden._grid._gridArray[X + 1, Y]._myType == TileType.Tavern) // E
-            tavernNeighborCount++;
-        if (GameWarden._grid._gridArray[X + 1, Y + 1]._myType == TileType.Tavern) // NE
-            tavernNeighborCount++;
-        if (GameWarden._grid._gridArray[X, Y + 1]._myType == TileType.Tavern) // N
-            tavernNeighborCount++;
-        if (GameWarden._grid._gridArray[X - 1, Y + 1]._myType == TileType.Tavern) // NW
-            tavernNeighborCount++;
-        if (GameWarden._grid._gridArray[X - 1, Y]._myType == TileType.Tavern) // W
-            tavernNeighborCount++;
-        if (GameWarden._grid._gridArray[X - 1, Y - 1]._myType == TileType.Tavern) // SW
-            tavernNeighborCount++;
-        if (GameWarden._grid._gridArray[X, Y - 1]._myType == TileType.Tavern) // S
-            tavernNeighborCount++;
-        if (GameWarden._grid._gridArray[X + 1, Y - 1]._myType == TileType.Tavern) // SE
-            tavernNeighborCount++;
+        if (X < GameWarden._grid._gridArray.GetLength(0) - 1)
+            if (GameWarden._grid._gridArray[X + 1, Y]._myType == TileType.Tavern) // E
+                tavernNeighborCount++;
+        if (X < GameWarden._grid._gridArray.GetLength(0) - 1 && Y < GameWarden._grid._gridArray.GetLength(1) - 1)
+            if (GameWarden._grid._gridArray[X + 1, Y + 1]._myType == TileType.Tavern) // NE
+                tavernNeighborCount++;
+        if (X < GameWarden._grid._gridArray.GetLength(0) - 1 && Y > 0)
+            if (GameWarden._grid._gridArray[X + 1, Y - 1]._myType == TileType.Tavern) // SE
+                tavernNeighborCount++;
+        if (Y < GameWarden._grid._gridArray.GetLength(1) - 1)
+            if (GameWarden._grid._gridArray[X, Y + 1]._myType == TileType.Tavern) // N
+                tavernNeighborCount++;
+        if (Y < GameWarden._grid._gridArray.GetLength(1) - 1 && X > 0)
+            if (GameWarden._grid._gridArray[X - 1, Y + 1]._myType == TileType.Tavern) // NW
+                tavernNeighborCount++;
+        if (X > 0)
+            if (GameWarden._grid._gridArray[X - 1, Y]._myType == TileType.Tavern) // W
+                tavernNeighborCount++;
+        if (X > 0 && Y > 0)
+            if (GameWarden._grid._gridArray[X - 1, Y - 1]._myType == TileType.Tavern) // SW
+                tavernNeighborCount++;
+        if (Y > 0)
+            if (GameWarden._grid._gridArray[X, Y - 1]._myType == TileType.Tavern) // S
+                tavernNeighborCount++;
     }
 
     void CheckNeighborsForStables()
     {
-        Debug.Log(GameWarden._grid._gridArray[X + 1, Y]);
-        Debug.Log(GameWarden._grid._gridArray[X + 1, Y + 1]);
-        Debug.Log(GameWarden._grid._gridArray[X, Y + 1]);
-        Debug.Log(GameWarden._grid._gridArray[X - 1, Y + 1]);
-        Debug.Log(GameWarden._grid._gridArray[X - 1, Y]);
-        Debug.Log(GameWarden._grid._gridArray[X - 1, Y - 1]);
-        Debug.Log(GameWarden._grid._gridArray[X, Y - 1]);
-        Debug.Log(GameWarden._grid._gridArray[X + 1, Y - 1]);
-
         stableNeighborCount = 0;
 
-        if (GameWarden._grid._gridArray[X + 1, Y]._myType == TileType.Stable) // E
-            stableNeighborCount++;
-        if (GameWarden._grid._gridArray[X + 1, Y + 1]._myType == TileType.Stable) // NE
-            stableNeighborCount++;
-        if (GameWarden._grid._gridArray[X, Y + 1]._myType == TileType.Stable) // N
-            stableNeighborCount++;
-        if (GameWarden._grid._gridArray[X - 1, Y + 1]._myType == TileType.Stable) // NW
-            stableNeighborCount++;
-        if (GameWarden._grid._gridArray[X - 1, Y]._myType == TileType.Stable) // W
-            stableNeighborCount++;
-        if (GameWarden._grid._gridArray[X - 1, Y - 1]._myType == TileType.Stable) // SW
-            stableNeighborCount++;
-        if (GameWarden._grid._gridArray[X, Y - 1]._myType == TileType.Stable) // S
-            stableNeighborCount++;
-        if (GameWarden._grid._gridArray[X + 1, Y - 1]._myType == TileType.Stable) // SE
-            stableNeighborCount++;
+        if (X < GameWarden._grid._gridArray.GetLength(0) - 1)
+            if (GameWarden._grid._gridArray[X + 1, Y]._myType == TileType.Stable) // E
+                stableNeighborCount++;
+        if (X < GameWarden._grid._gridArray.GetLength(0) - 1 && Y < GameWarden._grid._gridArray.GetLength(1) - 1)
+            if (GameWarden._grid._gridArray[X + 1, Y + 1]._myType == TileType.Stable) // NE
+                stableNeighborCount++;
+        if (X < GameWarden._grid._gridArray.GetLength(0) - 1 && Y > 0)
+            if (GameWarden._grid._gridArray[X + 1, Y - 1]._myType == TileType.Stable) // SE
+                stableNeighborCount++;
+        if (Y < GameWarden._grid._gridArray.GetLength(1) - 1)
+            if (GameWarden._grid._gridArray[X, Y + 1]._myType == TileType.Stable) // N
+                stableNeighborCount++;
+        if (Y < GameWarden._grid._gridArray.GetLength(1) - 1 && X > 0)
+            if (GameWarden._grid._gridArray[X - 1, Y + 1]._myType == TileType.Stable) // NW
+                stableNeighborCount++;
+        if (X > 0)
+            if (GameWarden._grid._gridArray[X - 1, Y]._myType == TileType.Stable) // W
+                stableNeighborCount++;
+        if (X > 0 && Y > 0)
+            if (GameWarden._grid._gridArray[X - 1, Y - 1]._myType == TileType.Stable) // SW
+                stableNeighborCount++;
+        if (Y> 0)
+            if (GameWarden._grid._gridArray[X, Y - 1]._myType == TileType.Stable) // S
+                stableNeighborCount++;
+
+        stableReductionPercent = 1 - (0.1f * stableNeighborCount);
     }
 
     int Roll()
@@ -141,16 +141,17 @@ public class Tile : MonoBehaviour
     IEnumerator WorkTile(string resource)
     {
         _canRoll = false;
+        CheckNeighborsForStables();
+        CheckNeighborsForTaverns();
         if (resource == "chitin")
         {
-            CheckNeighborsForTaverns();
             GameWarden.GatherMushwood(Roll() + tavernNeighborCount);
         }
         else
         {
             GameWarden.GatherCrystal(Roll() + tavernNeighborCount);
         }
-        yield return new WaitForSeconds(1.5f * stableReductionPercent);
+        yield return new WaitForSeconds(5f * stableReductionPercent);
         _canRoll = true;
     }
 }
