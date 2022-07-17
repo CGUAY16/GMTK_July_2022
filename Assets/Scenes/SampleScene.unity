@@ -473,7 +473,7 @@ MonoBehaviour:
   Crystal: 0
   Gold: 0
   HeldTile: -1
-  StartingGold: 100
+  StartingGold: 1000
   LumberjackPrice: 25
   QuarryPrice: 25
   TavernPrice: 50
@@ -481,6 +481,8 @@ MonoBehaviour:
   AccountantPrice: 75
   ChurchPrice: 100
   RoadPrice: 25
+  Timer: 5
+  TimerReset: 5
   MushroomCount: {fileID: 1920852816}
   CrystalCount: {fileID: 882963073}
   GoldCount: {fileID: 1091711647}
@@ -1709,7 +1711,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Use the numbers above your keyboard: \t 1 - Lumberjack  2 - Quarry  3
-    - Tavern  4 - Stable  5 - Accountant  6 - Church  7 - Road"
+    - Tavern  4 - Stable  5 - Accountant  6 - Church"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
