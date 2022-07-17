@@ -10,6 +10,9 @@ public class KingsDice_Behavior : MonoBehaviour
     public Image Dice1;
     public Image Dice2;
 
+    public GameWarden gameWarden;
+    public Grid grid;
+
     /* indexes:
      * 0 = logging cabin
      * 1 = quarry
@@ -27,6 +30,7 @@ public class KingsDice_Behavior : MonoBehaviour
 
     public Sprite defaultEmpty;
     private AudioSource kingSource;
+    public Music_SFX_manager gameMusic;
 
     private void Awake()
     {
@@ -65,12 +69,15 @@ public class KingsDice_Behavior : MonoBehaviour
     public IEnumerator BehaviorLoop()
     {
         KingsDicePanel.SetActive(true);
+        gameMusic.PlayThisClip(gameMusic.trackClips[2]);
         kingSource.Play();
         yield return new WaitForSeconds(1f);
         PickRandomBuilding();
         PickRandomNum();
-
-        yield return null;
+        yield return new WaitForSeconds(1f);
+        // code that applies the removal of buildings
+        yield return new WaitForSeconds(1f);
+        KingsDicePanel.SetActive(false);
     }
 
 }
