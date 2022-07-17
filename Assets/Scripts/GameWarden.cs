@@ -56,41 +56,41 @@ public class GameWarden : MonoBehaviour
 
         if(HeldTile == -1)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1) && Gold >= LumberjackPrice)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && Gold >= (LumberjackPrice + 5 * TileCounts[TileType.Lumberjack]))
             {
                 HeldTile = 1;
                 HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Lumberjack");
-                RemoveGold(LumberjackPrice);
+                RemoveGold((LumberjackPrice + 5 * TileCounts[TileType.Lumberjack]));
             }
-            if (Input.GetKeyDown(KeyCode.Alpha2) && Gold >= QuarryPrice)
+            if (Input.GetKeyDown(KeyCode.Alpha2) && Gold >= (QuarryPrice + 5 * TileCounts[TileType.Quarry]))
             {
                 HeldTile = 2;
                 HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Quarry");
-                RemoveGold(QuarryPrice);
+                RemoveGold((QuarryPrice + 5 * TileCounts[TileType.Quarry]));
             }
-            if (Input.GetKeyDown(KeyCode.Alpha3) && Gold >= TavernPrice)
+            if (Input.GetKeyDown(KeyCode.Alpha3) && Gold >= (TavernPrice + 5 * TileCounts[TileType.Tavern]))
             {
                 HeldTile = 3;
                 HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Tavern");
-                RemoveGold(TavernPrice);
+                RemoveGold((TavernPrice + 5 * TileCounts[TileType.Tavern]));
             }
-            if (Input.GetKeyDown(KeyCode.Alpha4) && Gold >= StablePrice)
+            if (Input.GetKeyDown(KeyCode.Alpha4) && Gold >= (StablePrice + 5 * TileCounts[TileType.Tavern]))
             {
                 HeldTile = 4;
                 HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Stable");
-                RemoveGold(StablePrice);
+                RemoveGold((StablePrice + 5 * TileCounts[TileType.Tavern]));
             }
-            if (Input.GetKeyDown(KeyCode.Alpha5) && Gold >= AccountantPrice)
+            if (Input.GetKeyDown(KeyCode.Alpha5) && Gold >= (AccountantPrice + 25 * TileCounts[TileType.Accountant]))
             {
                 HeldTile = 5;
                 HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Accountant");
-                RemoveGold(AccountantPrice);
+                RemoveGold((AccountantPrice + 25 * TileCounts[TileType.Accountant]));
             }
-            if (Input.GetKeyDown(KeyCode.Alpha6) && Gold >= ChurchPrice)
+            if (Input.GetKeyDown(KeyCode.Alpha6) && Gold >= (ChurchPrice + 25 * TileCounts[TileType.Church]))
             {
                 HeldTile = 6;
                 HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Church");
-                RemoveGold(ChurchPrice);
+                RemoveGold((ChurchPrice + 25 * TileCounts[TileType.Church]));
             }
         }
 
@@ -147,7 +147,7 @@ public class GameWarden : MonoBehaviour
     public void Tax()
     {
         Timer = 10f;
-        int taxAmt = (int)Mathf.Floor(100 * (Mathf.Pow(1.01f, Time.time)));
+        int taxAmt = (int)Mathf.Floor(0 * (Mathf.Pow(1.01f, Time.time)));
         if(Gold <= taxAmt)
         {
             Debug.Log("0 tax");
