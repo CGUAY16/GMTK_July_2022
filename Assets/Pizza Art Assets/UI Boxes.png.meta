@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7d30aa6f11a3d4645931e137d1ab55d5
+guid: d8749127a91ce7b4bbc34f039b446ee8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dice_0
+      name: UI Boxes_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 112
-        width: 16
-        height: 16
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,8 +118,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7741ae75cf23361e0800000000000000
-      internalID: -2205863333093305225
+      spriteID: 04f407164bbaf514784f52bde9312b33
+      internalID: 456333465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI Boxes_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4b1e40181a7be849ad6855c0073933c
+      internalID: 1590602495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI Boxes_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bde22f1bc1b9d01489f2e16e28f2a3c2
+      internalID: 1963685297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI Boxes_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 594e3fd34211c1b41a7fd9cbebff9e09
+      internalID: 852048366
       vertices: []
       indices: 
       edges: []
@@ -127,7 +190,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +198,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Dice_0: -2205863333093305225
+      UI Boxes_11: -1404336652
+      UI Boxes_0: 456333465
+      UI Boxes_12: 271819251
+      UI Boxes_3: 1909278521
+      UI Boxes_14: -1979855205
+      UI Boxes_2: -266926947
+      UI Boxes_5: -2037865774
+      UI Boxes_6: -1656352317
+      UI Boxes_8: -1487312250
+      UI Boxes_9: -1093523061
+      UI Boxes_13: -645178831
+      UI Boxes_10: -1992984100
+      UI Boxes_1: 1590602495
+      UI Boxes_15: -171898150
+      UI Boxes_4: 1963685297
+      UI Boxes_7: 852048366
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
