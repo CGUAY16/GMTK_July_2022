@@ -59,6 +59,23 @@ public class Grid
         }
     }
 
+    public void RemoveTiles(int numOfTiles, TileType tileType)
+    {
+        for (int x = 0; x < _gridArray.GetLength(0); x++)
+        {
+            for (int y = 0; y < _gridArray.GetLength(1); y++)
+            {
+                if (_gridArray[x,y]._myType == tileType)
+                {
+                    _gridArray[x, y]._myType = TileType.Grassland;
+                    _gameWarden.TileCounts[tileType]--;
+                    _gridArray[x,y].GetComponent<SpriteRenderer>().sprite 
+                        = Resources.Load<Sprite>($"Sprites/{tileType.ToString()}");
+                }
+            }
+        }
+    }
+
     private Vector3 GetWorldPosition(int x, int y, bool border=true)
     {
         Vector3 newV = new Vector3(x, y) * _cellSize;

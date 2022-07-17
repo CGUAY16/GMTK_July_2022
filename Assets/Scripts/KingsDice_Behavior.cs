@@ -11,7 +11,6 @@ public class KingsDice_Behavior : MonoBehaviour
     public Image Dice2;
 
     public GameWarden gameWarden;
-    public Grid grid;
 
     /* indexes:
      * 0 = logging cabin
@@ -50,20 +49,23 @@ public class KingsDice_Behavior : MonoBehaviour
         {
             // if tile count in dictionary is == 0, then we game over the player.
             isTaxSeason = false;
+            gameWarden._grid.ToggleSprites();
             StartCoroutine(BehaviorLoop());
         }
     }
 
-    public void PickRandomBuilding()
+    public int PickRandomBuilding()
     {
         int randomNum = (int)Mathf.Floor(Random.Range(1f, 6f)) - 1;
         Dice1.sprite = kingsDiceSpriteList[randomNum];
+        return randomNum;
     }
     
-    public void PickRandomNum()
+    public int PickRandomNum()
     {
-        int random = (int)Mathf.Floor(Random.Range(1f, 6f));
+        int random = (int)Mathf.Floor(Random.Range(1f, 6f)) - 1;
         Dice2.sprite = kingsDiceSpriteList2[random];
+        return random + 1;
     }
 
     public IEnumerator BehaviorLoop()
@@ -71,13 +73,63 @@ public class KingsDice_Behavior : MonoBehaviour
         KingsDicePanel.SetActive(true);
         gameMusic.PlayThisClip(gameMusic.trackClips[2]);
         kingSource.Play();
-        yield return new WaitForSeconds(1f);
-        PickRandomBuilding();
-        PickRandomNum();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(4f);
+        int randBuilding = PickRandomBuilding();
+        TileType KingsChoice = FromIntToEnum(randBuilding);
+        int randNum = PickRandomNum();
+        yield return new WaitForSeconds(2f);
+        gameWarden._grid.RemoveTiles(randNum, KingsChoice);
         // code that applies the removal of buildings
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
+        gameWarden._grid.ToggleSprites();
+        gameMusic.PlayThisClip(gameMusic.trackClips[1]);
         KingsDicePanel.SetActive(false);
     }
 
+    public TileType FromIntToEnum(int num)
+    {
+        TileType result;
+
+        switch (num){
+            case 0:
+                {
+                    result = TileType.Lumberjack;
+                    break;
+                }
+            case 1:
+                {
+                    result = TileType.Quarry;
+                    break;
+                }
+            case 2:
+                {
+                    result = TileType.Tavern;
+                    break;
+                }
+            case 3:
+                {
+                    result = TileType.Stable;
+                    break;
+                }
+            case 4: 
+                {
+                    result = TileType.Accountant;
+                    break;
+                }
+            case 5:
+                {
+                    result = TileType.Church;
+                    break;
+                }
+            default:
+                {
+                    Debug.Log("error");
+                    result = TileType.Grassland;
+                    break;
+                }
+        }
+
+        return result;
+
+    }
 }

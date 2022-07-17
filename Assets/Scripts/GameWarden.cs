@@ -30,8 +30,7 @@ public class GameWarden : MonoBehaviour
 
     public KingsDice_Behavior _behavior;
     public Music_SFX_manager soundManager;
-
-    Time time;
+    
 
 
     void Start()
@@ -151,10 +150,12 @@ public class GameWarden : MonoBehaviour
     {
         Timer = 10f;
         int taxAmt = (int)Mathf.Floor(0 * (Mathf.Pow(1.01f, Time.time)));
-        if(Gold <= taxAmt)
+        int taxAmtToSendToPlayer = (int)Mathf.Floor(0 * (Mathf.Pow(1.01f, Time.time + 60f)));
+        if (Gold <= taxAmt)
         {
             Debug.Log("0 tax");
             _behavior.isTaxSeason = true;
+            _behavior.gameObject.SetActive(true);
         }
         else
         {

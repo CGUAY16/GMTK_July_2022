@@ -17,7 +17,7 @@ public class Tile : MonoBehaviour
     public float stableReductionPercent = 1;
 
     SpriteRenderer _myRenderer;
-    TileType _myType = TileType.Grassland;
+    public TileType _myType = TileType.Grassland;
     bool _canRoll = true;
 
     void Awake()
