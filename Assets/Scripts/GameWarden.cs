@@ -28,6 +28,9 @@ public class GameWarden : MonoBehaviour
 
     public Grid _grid;
 
+    public KingsDice_Behavior _behavior;
+    public Music_SFX_manager soundManager;
+
     Time time;
 
 
@@ -151,6 +154,7 @@ public class GameWarden : MonoBehaviour
         if(Gold <= taxAmt)
         {
             Debug.Log("0 tax");
+            _behavior.isTaxSeason = true;
         }
         else
         {

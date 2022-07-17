@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d8749127a91ce7b4bbc34f039b446ee8
+guid: 81e4e98dc12284f4bbf8b129aa9b27de
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI Boxes_0
+      name: King's Dice_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,19 +118,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04f407164bbaf514784f52bde9312b33
-      internalID: 456333465
+      spriteID: 9a41ff314c512ae41b46ae91db78f583
+      internalID: 354133505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI Boxes_1
+      name: King's Dice_1
       rect:
         serializedVersion: 2
         x: 32
         y: 96
-        width: 96
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -139,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4b1e40181a7be849ad6855c0073933c
-      internalID: 1590602495
+      spriteID: dac8385ae7a784a46a84ef4862b2104d
+      internalID: -1357278801
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI Boxes_4
+      name: King's Dice_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 96
-        height: 96
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bde22f1bc1b9d01489f2e16e28f2a3c2
-      internalID: 1963685297
+      spriteID: c6b4ea19efc273141926da805cbb94e0
+      internalID: -677032502
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI Boxes_7
+      name: King's Dice_3
       rect:
         serializedVersion: 2
         x: 96
-        y: 0
+        y: 96
         width: 32
-        height: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,8 +181,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 594e3fd34211c1b41a7fd9cbebff9e09
-      internalID: 852048366
+      spriteID: 08d947b2083ca3b4b93c226df691d6fa
+      internalID: 1975462448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: King's Dice_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fe58bcbbacce06499c81f137bad5bb9
+      internalID: -100065709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: King's Dice_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f88595be42695144982dd7b48b78392f
+      internalID: -1264869198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: King's Dice_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dc3c1aeb20942942a64ee66a434aa98
+      internalID: 43484457
       vertices: []
       indices: 
       edges: []
@@ -198,22 +261,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UI Boxes_11: -1404336652
-      UI Boxes_0: 456333465
-      UI Boxes_12: 271819251
-      UI Boxes_3: 1909278521
-      UI Boxes_14: -1979855205
-      UI Boxes_2: -266926947
-      UI Boxes_5: -2037865774
-      UI Boxes_6: -1656352317
-      UI Boxes_8: -1487312250
-      UI Boxes_9: -1093523061
-      UI Boxes_13: -645178831
-      UI Boxes_10: -1992984100
-      UI Boxes_1: 1590602495
-      UI Boxes_15: -171898150
-      UI Boxes_4: 1963685297
-      UI Boxes_7: 852048366
+      King's Dice_4: -100065709
+      King's Dice_6: 43484457
+      King's Dice_2: -677032502
+      King's Dice_0: 354133505
+      King's Dice_1: -1357278801
+      King's Dice_3: 1975462448
+      King's Dice_5: -1264869198
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
