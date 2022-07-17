@@ -27,6 +27,8 @@ public class GameWarden : MonoBehaviour
 
     public Grid _grid;
 
+    Time time;
+
 
     void Start()
     {
