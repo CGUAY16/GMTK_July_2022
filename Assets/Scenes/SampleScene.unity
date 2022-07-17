@@ -416,7 +416,7 @@ MonoBehaviour:
   Crystal: 0
   Gold: 0
   HeldTile: -1
-  StartingGold: 100
+  StartingGold: 1000
   LumberjackPrice: 25
   QuarryPrice: 25
   TavernPrice: 50
@@ -424,6 +424,8 @@ MonoBehaviour:
   AccountantPrice: 75
   ChurchPrice: 100
   RoadPrice: 25
+  Timer: 1
+  TimerReset: 1
   MushroomCount: {fileID: 1920852816}
   CrystalCount: {fileID: 882963073}
   GoldCount: {fileID: 1091711647}

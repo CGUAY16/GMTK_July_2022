@@ -39,7 +39,7 @@ public class Tile : MonoBehaviour
             {
                 _myType = (TileType)GameWarden.HeldTile;
                 _myRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
-                Debug.Log(GameWarden.Register((TileType)GameWarden.HeldTile));
+                GameWarden.Register((TileType)GameWarden.HeldTile);
                 GameWarden.ClearHeld();
             }
         }
