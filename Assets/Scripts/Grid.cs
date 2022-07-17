@@ -6,7 +6,7 @@ public class Grid
 {
     private int _width;
     private int _height;
-    private Tile[,] _gridArray;
+    public Tile[,] _gridArray;
     private float _cellSize;
     private GameWarden _gameWarden;
 

@@ -5,7 +5,7 @@ using TMPro;
 
 public class GameWarden : MonoBehaviour
 {
-    public int Chitin;
+    public int Mushwood;
     public int Crystal;
     public int Gold;
     public int HeldTile = -1;
@@ -27,7 +27,10 @@ public class GameWarden : MonoBehaviour
 
     public Dictionary<TileType,int> TileCounts = new Dictionary<TileType,int>();
 
-    Grid _grid;
+    public Grid _grid;
+
+    Time time;
+
 
     void Start()
     {
@@ -121,10 +124,10 @@ public class GameWarden : MonoBehaviour
         GoldCount.SetText(Gold.ToString());
     }
 
-    public void GatherChitin(int mushrooms)
+    public void GatherMushwood(int mushrooms)
     {
-        Chitin += mushrooms;
-        MushroomCount.SetText(Chitin.ToString());
+        Mushwood += mushrooms;
+        MushroomCount.SetText(Mushwood.ToString());
     }
 
     public void GatherCrystal(int rocks)

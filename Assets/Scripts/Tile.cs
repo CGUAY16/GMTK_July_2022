@@ -12,6 +12,10 @@ public class Tile : MonoBehaviour
     public int Y;
     public GameWarden GameWarden;
 
+    public int tavernNeighborCount = 0;
+    public int stableNeighborCount = 0;
+    public float stableReductionPercent = 1;
+
     SpriteRenderer _myRenderer;
     TileType _myType = TileType.Grassland;
     bool _canRoll = true;
@@ -62,17 +66,70 @@ public class Tile : MonoBehaviour
             _myType = TileType.Road;
     }
 
-    void CheckNeighbors(Tile[,] grid)
+    void CheckNeighborsForTaverns()
     {
-        Debug.Log(grid[X+1,Y]);
-        Debug.Log(grid[X,Y+1]);
-        Debug.Log(grid[X-1,Y]);
-        Debug.Log(grid[X,Y-1]);
+        Debug.Log(GameWarden._grid._gridArray[X + 1,Y]);
+        Debug.Log(GameWarden._grid._gridArray[X + 1,Y + 1]);
+        Debug.Log(GameWarden._grid._gridArray[X, Y + 1]);
+        Debug.Log(GameWarden._grid._gridArray[X - 1,Y + 1]);
+        Debug.Log(GameWarden._grid._gridArray[X - 1,Y]);
+        Debug.Log(GameWarden._grid._gridArray[X - 1,Y - 1]);
+        Debug.Log(GameWarden._grid._gridArray[X,Y - 1]);
+        Debug.Log(GameWarden._grid._gridArray[X + 1,Y - 1]);
+
+        tavernNeighborCount = 0;
+
+        if (GameWarden._grid._gridArray[X + 1, Y]._myType == TileType.Tavern) // E
+            tavernNeighborCount++;
+        if (GameWarden._grid._gridArray[X + 1, Y + 1]._myType == TileType.Tavern) // NE
+            tavernNeighborCount++;
+        if (GameWarden._grid._gridArray[X, Y + 1]._myType == TileType.Tavern) // N
+            tavernNeighborCount++;
+        if (GameWarden._grid._gridArray[X - 1, Y + 1]._myType == TileType.Tavern) // NW
+            tavernNeighborCount++;
+        if (GameWarden._grid._gridArray[X - 1, Y]._myType == TileType.Tavern) // W
+            tavernNeighborCount++;
+        if (GameWarden._grid._gridArray[X - 1, Y - 1]._myType == TileType.Tavern) // SW
+            tavernNeighborCount++;
+        if (GameWarden._grid._gridArray[X, Y - 1]._myType == TileType.Tavern) // S
+            tavernNeighborCount++;
+        if (GameWarden._grid._gridArray[X + 1, Y - 1]._myType == TileType.Tavern) // SE
+            tavernNeighborCount++;
+    }
+
+    void CheckNeighborsForStables()
+    {
+        Debug.Log(GameWarden._grid._gridArray[X + 1, Y]);
+        Debug.Log(GameWarden._grid._gridArray[X + 1, Y + 1]);
+        Debug.Log(GameWarden._grid._gridArray[X, Y + 1]);
+        Debug.Log(GameWarden._grid._gridArray[X - 1, Y + 1]);
+        Debug.Log(GameWarden._grid._gridArray[X - 1, Y]);
+        Debug.Log(GameWarden._grid._gridArray[X - 1, Y - 1]);
+        Debug.Log(GameWarden._grid._gridArray[X, Y - 1]);
+        Debug.Log(GameWarden._grid._gridArray[X + 1, Y - 1]);
+
+        stableNeighborCount = 0;
+
+        if (GameWarden._grid._gridArray[X + 1, Y]._myType == TileType.Stable) // E
+            stableNeighborCount++;
+        if (GameWarden._grid._gridArray[X + 1, Y + 1]._myType == TileType.Stable) // NE
+            stableNeighborCount++;
+        if (GameWarden._grid._gridArray[X, Y + 1]._myType == TileType.Stable) // N
+            stableNeighborCount++;
+        if (GameWarden._grid._gridArray[X - 1, Y + 1]._myType == TileType.Stable) // NW
+            stableNeighborCount++;
+        if (GameWarden._grid._gridArray[X - 1, Y]._myType == TileType.Stable) // W
+            stableNeighborCount++;
+        if (GameWarden._grid._gridArray[X - 1, Y - 1]._myType == TileType.Stable) // SW
+            stableNeighborCount++;
+        if (GameWarden._grid._gridArray[X, Y - 1]._myType == TileType.Stable) // S
+            stableNeighborCount++;
+        if (GameWarden._grid._gridArray[X + 1, Y - 1]._myType == TileType.Stable) // SE
+            stableNeighborCount++;
     }
 
     int Roll()
     {
-        int num = (int)Mathf.Floor(Random.Range(1f,6f));
         return (int)Mathf.Floor(Random.Range(1f,6f));
     }
 
@@ -85,10 +142,15 @@ public class Tile : MonoBehaviour
     {
         _canRoll = false;
         if (resource == "chitin")
-            GameWarden.GatherChitin(Roll());
+        {
+            CheckNeighborsForTaverns();
+            GameWarden.GatherMushwood(Roll() + tavernNeighborCount);
+        }
         else
-            GameWarden.GatherCrystal(Roll());
-        yield return new WaitForSeconds(1.5f);
+        {
+            GameWarden.GatherCrystal(Roll() + tavernNeighborCount);
+        }
+        yield return new WaitForSeconds(1.5f * stableReductionPercent);
         _canRoll = true;
     }
 }
