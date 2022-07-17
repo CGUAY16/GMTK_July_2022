@@ -157,7 +157,7 @@ RectTransform:
   - {fileID: 1807057037}
   - {fileID: 1936497735}
   m_Father: {fileID: 376865542}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -587,8 +587,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1618518040}
-  - {fileID: 100332107}
   - {fileID: 1712911939}
+  - {fileID: 100332107}
   - {fileID: 538997180}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1942,6 +1942,7 @@ MonoBehaviour:
   KingsDicePanel: {fileID: 538997179}
   Dice1: {fileID: 1028093240}
   Dice2: {fileID: 1679618734}
+  gameWarden: {fileID: 0}
   kingsDiceSpriteList:
   - {fileID: -1264869198, guid: 81e4e98dc12284f4bbf8b129aa9b27de, type: 3}
   - {fileID: -100065709, guid: 81e4e98dc12284f4bbf8b129aa9b27de, type: 3}
@@ -1957,7 +1958,7 @@ MonoBehaviour:
   - {fileID: 1147008821, guid: 01ed65ee5822c0d4e81bb30f85398afb, type: 3}
   - {fileID: -786832595, guid: 01ed65ee5822c0d4e81bb30f85398afb, type: 3}
   defaultEmpty: {fileID: 1975462448, guid: 81e4e98dc12284f4bbf8b129aa9b27de, type: 3}
-  gameMusic: {fileID: 204491569}
+  gameMusic: {fileID: 204491568}
 --- !u!4 &1529340463
 Transform:
   m_ObjectHideFlags: 0
@@ -2405,7 +2406,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 376865542}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
