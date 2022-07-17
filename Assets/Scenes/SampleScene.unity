@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 134223592}
   - component: {fileID: 134223594}
   - component: {fileID: 134223593}
+  - component: {fileID: 134223595}
   m_Layer: 5
   m_Name: TaxAmt
   m_TagString: Untagged
@@ -373,7 +374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1165, y: -374}
+  m_AnchoredPosition: {x: 1158, y: -374}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &134223593
@@ -473,6 +474,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134223591}
   m_CullTransparentMesh: 1
+--- !u!114 &134223595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134223591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9022cbce36f0dd44bf182f4e4b9a2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &204491566
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +814,8 @@ MonoBehaviour:
   HeldTileIcon: {fileID: 774312927}
   _behavior: {fileID: 1529340462}
   soundManager: {fileID: 204491568}
+  taxAmt: {fileID: 134223593}
+  bigTimer: {fileID: 1618518043}
 --- !u!114 &389580315
 MonoBehaviour:
   m_ObjectHideFlags: 0

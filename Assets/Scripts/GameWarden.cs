@@ -30,8 +30,7 @@ public class GameWarden : MonoBehaviour
 
     public KingsDice_Behavior _behavior;
     public Music_SFX_manager soundManager;
-    
-
+    public TMP_Text taxAmt;
 
     void Start()
     {
@@ -151,6 +150,7 @@ public class GameWarden : MonoBehaviour
         Timer = 10f;
         int taxAmt = (int)Mathf.Floor(0 * (Mathf.Pow(1.01f, Time.time)));
         int taxAmtToSendToPlayer = (int)Mathf.Floor(0 * (Mathf.Pow(1.01f, Time.time + 60f)));
+
         if (Gold <= taxAmt)
         {
             Debug.Log("0 tax");
