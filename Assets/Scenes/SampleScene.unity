@@ -474,16 +474,15 @@ MonoBehaviour:
   Crystal: 0
   Gold: 0
   HeldTile: -1
-  StartingGold: 1000
+  StartingGold: 100
   LumberjackPrice: 25
   QuarryPrice: 25
   TavernPrice: 50
   StablePrice: 35
   AccountantPrice: 75
   ChurchPrice: 100
-  RoadPrice: 25
-  Timer: 5
-  TimerReset: 5
+  Timer: 60
+  TimerReset: 60
   MushroomCount: {fileID: 1920852816}
   CrystalCount: {fileID: 882963073}
   GoldCount: {fileID: 1091711647}
@@ -534,7 +533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &426592285
 Transform:
   m_ObjectHideFlags: 0
@@ -591,12 +590,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 0d64aefb7b3692141be37f56fe13f55f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce944fa7ce283324b994562b975fa697, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.0117648, y: 3.0117648}
+  m_Size: {x: 2.9767442, y: 2.9767442}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1553,7 +1552,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Use the numbers above your keyboard: \t 1 - Lumberjack  2 - Quarry  3
-    - Tavern  4 - Stable  5 - Accountant  6 - Church"
+    - Tavern  4 - Stable  5 - Bank  6 - Church"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
