@@ -16,7 +16,6 @@ public class GameWarden : MonoBehaviour
     public int StablePrice;
     public int AccountantPrice;
     public int ChurchPrice;
-    public int RoadPrice;
     public float Timer = 5f;
     public float TimerReset = 1f;
 
@@ -46,11 +45,9 @@ public class GameWarden : MonoBehaviour
     void Update()
     {
         Timer -= Time.deltaTime;
-        // Debug.Log(Timer);
         if (Timer <= 0)
             Tax();
 
-        // TODO Convert to switch statement
         if (Input.GetMouseButtonDown(2))
         {
             ClearHeld();
@@ -93,7 +90,7 @@ public class GameWarden : MonoBehaviour
             {
                 HeldTile = 6;
                 HeldTileIcon.sprite = Resources.Load<Sprite>("Sprites/Church");
-                // RemoveGold(ChurchPrice);
+                RemoveGold(ChurchPrice);
             }
         }
 
@@ -105,9 +102,9 @@ public class GameWarden : MonoBehaviour
 
     public void Sell()
     {
-        AddGold(Chitin + Crystal);
-        Chitin = 0;
-        MushroomCount.SetText(Chitin.ToString());
+        AddGold(Mushwood + Crystal);
+        Mushwood = 0;
+        MushroomCount.SetText(Mushwood.ToString());
         Crystal = 0;
         CrystalCount.SetText(Crystal.ToString());
     }
@@ -164,7 +161,7 @@ public class GameWarden : MonoBehaviour
 
     IEnumerator Church(int amt)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         AddGold(amt);
     }
 }
