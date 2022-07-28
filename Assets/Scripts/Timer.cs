@@ -5,15 +5,17 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-
-    public float timeLeft;
+    public float initialTime;
+    public float timeRemaining;
     public bool isTimerOn = false;
+    public bool isTimerPaused = false;
 
     public TMP_Text textMeshProText;
 
     // Start is called before the first frame update
     void Start()
     {
+        initialTime = timeRemaining;
         isTimerOn = true;
     }
 
@@ -22,20 +24,23 @@ public class Timer : MonoBehaviour
     {
         if (isTimerOn)
         {
-            if(timeLeft > 0)
+            if (!isTimerPaused)
             {
-                timeLeft -= Time.deltaTime;
-                UpdateTimer(timeLeft);
-            }
-            else
-            {
-                timeLeft = 0;
-                isTimerOn = false;
+                if (timeRemaining > 0)
+                {
+                    timeRemaining -= Time.deltaTime;
+                    UpdateTimer(timeRemaining);
+                }
+                else
+                {
+                    timeRemaining = 0;
+                    isTimerOn = false;
+                }
             }
         }
     }
 
-    public void UpdateTimer(float currentTime)
+    private void UpdateTimer(float currentTime)
     {
         currentTime += 1;
 
@@ -43,5 +48,21 @@ public class Timer : MonoBehaviour
         float seconds = Mathf.FloorToInt(currentTime % 60);
 
         textMeshProText.text = string.Format("{0:00} : {1:00}",minutes,seconds);
+    }
+
+    public void RestartTimer()
+    {
+        timeRemaining = initialTime;
+        isTimerOn = true;
+    }
+
+    public void PauseTimer()
+    {
+        isTimerPaused = true;
+    }
+
+    public void UnPauseTimer()
+    {
+        isTimerPaused = false;
     }
 }

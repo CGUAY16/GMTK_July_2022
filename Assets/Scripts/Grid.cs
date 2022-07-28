@@ -61,14 +61,19 @@ public class Grid
 
     public void RemoveTiles(int numOfTiles, TileType tileType)
     {
+        int tilesRemoved = 0;
         for (int x = 0; x < _gridArray.GetLength(0); x++)
         {
             for (int y = 0; y < _gridArray.GetLength(1); y++)
             {
-                if (_gridArray[x,y]._myType == tileType)
+                if ((_gridArray[x,y]._myType == tileType) && (tilesRemoved <= numOfTiles))
                 {
                     _gridArray[x, y]._myType = TileType.Grassland;
                     _gameWarden.TileCounts[tileType]--;
+                    tilesRemoved++;
+
+                    // THIS NEEDS TO CHANGE CAUSE SPRITE DOESNT CHANGE RIGHT NOW
+                    // fix how to grab sprite renderer component
                     _gridArray[x,y].GetComponent<SpriteRenderer>().sprite 
                         = Resources.Load<Sprite>($"Sprites/{tileType.ToString()}");
                 }

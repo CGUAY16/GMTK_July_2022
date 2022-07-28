@@ -12,6 +12,9 @@ public class KingsDice_Behavior : MonoBehaviour
 
     public GameWarden gameWarden;
 
+    public Timer TotalTimeRef;
+    public Timer TaxTimeRef;
+
     /* indexes:
      * 0 = logging cabin
      * 1 = quarry
@@ -28,12 +31,11 @@ public class KingsDice_Behavior : MonoBehaviour
     public Sprite[] kingsDiceSpriteList2;
 
     public Sprite defaultEmpty;
-    private AudioSource kingSource;
-    public Music_SFX_manager gameMusic;
+    public SoundData soundDataRef;
 
     private void Awake()
     {
-        kingSource = GetComponent<AudioSource>();
+        
     }
 
     // Start is called before the first frame update
@@ -71,19 +73,25 @@ public class KingsDice_Behavior : MonoBehaviour
     public IEnumerator BehaviorLoop()
     {
         KingsDicePanel.SetActive(true);
-        gameMusic.PlayThisClip(gameMusic.trackClips[2]);
-        kingSource.Play();
+        SoundManager.PlayMusic(SoundManager.MusicType.KingsPunishment, soundDataRef.musicFiles);
+        SoundManager.PlaySound(SoundManager.SoundType.KingsDiceRoll, soundDataRef.soundFiles);
         yield return new WaitForSeconds(4f);
+
         int randBuilding = PickRandomBuilding();
         TileType KingsChoice = FromIntToEnum(randBuilding);
         int randNum = PickRandomNum();
         yield return new WaitForSeconds(2f);
+
         gameWarden._grid.RemoveTiles(randNum, KingsChoice);
         // code that applies the removal of buildings
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.25f);
+
+        SoundManager.PlayMusic(SoundManager.MusicType.GameplayLoop, soundDataRef.musicFiles);
         gameWarden._grid.ToggleSprites();
-        gameMusic.PlayThisClip(gameMusic.trackClips[1]);
         KingsDicePanel.SetActive(false);
+        TotalTimeRef.UnPauseTimer();
+        TaxTimeRef.RestartTimer();
+        gameWarden.isItTaxTime = true;
     }
 
     public TileType FromIntToEnum(int num)

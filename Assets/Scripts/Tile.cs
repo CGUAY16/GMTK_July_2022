@@ -16,9 +16,9 @@ public class Tile : MonoBehaviour
     public int stableNeighborCount = 0;
     public float stableReductionPercent = 1;
 
-    SpriteRenderer _myRenderer;
+    private SpriteRenderer _myRenderer;
     public TileType _myType = TileType.Grassland;
-    bool _canRoll = true;
+    private bool _canRoll = true;
 
     void Awake()
     {
@@ -30,9 +30,9 @@ public class Tile : MonoBehaviour
     void Update()
     {
         if (_myType == TileType.Lumberjack && _canRoll)
-            StartCoroutine(WorkTile("chitin"));
+            StartCoroutine(WorkTile("Mushwood"));
         if (_myType == TileType.Quarry && _canRoll)
-            StartCoroutine(WorkTile("crystal"));
+            StartCoroutine(WorkTile("Crystal"));
     }
 
     void OnMouseOver()
@@ -143,11 +143,11 @@ public class Tile : MonoBehaviour
         _canRoll = false;
         CheckNeighborsForStables();
         CheckNeighborsForTaverns();
-        if (resource == "chitin")
+        if (resource == "Mushwood")
         {
             GameWarden.GatherMushwood(Roll() + tavernNeighborCount);
         }
-        else
+        else if (resource == "Crystal")
         {
             GameWarden.GatherCrystal(Roll() + tavernNeighborCount);
         }
