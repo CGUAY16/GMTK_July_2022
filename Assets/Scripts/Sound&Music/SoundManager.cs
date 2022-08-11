@@ -10,14 +10,17 @@ public static class SoundManager
         Buy,
         Sell,
         buildingPlacement,
-        TaxesPaid
+        TaxesPaid,
+        GameOver,
+        MenuButtonPress
     }
 
     public enum MusicType
     {
         MainMenu,
         GameplayLoop,
-        KingsPunishment
+        KingsPunishment,
+        Win
     }
 
     // For Music

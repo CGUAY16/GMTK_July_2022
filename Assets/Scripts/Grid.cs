@@ -10,7 +10,7 @@ public class Grid
     private float _cellSize;
     private GameWarden _gameWarden;
 
-    public Grid (int width, int height, float cellSize, Transform parent, GameWarden gameWarden)
+    public Grid (int width, int height, float cellSize, Transform parent, GameWarden gameWarden, Vector3 initialGridStartPoint)
     {
         this._width = width;
         this._height = height;
@@ -25,7 +25,7 @@ public class Grid
             {
                 _gridArray[x,y] = new GameObject(x + "" + y).AddComponent<Tile>();
                 _gridArray[x,y].transform.SetParent(parent);
-                _gridArray[x,y].transform.position = GetWorldPosition(x,y) + new Vector3(_cellSize / 2, _cellSize / 2, 0);
+                _gridArray[x,y].transform.position = GetWorldPosition(x,y) + new Vector3(_cellSize / 2, _cellSize / 2, 0) + initialGridStartPoint;
                 _gridArray[x,y].X = x;
                 _gridArray[x,y].Y = y;
                 _gridArray[x,y].GameWarden = _gameWarden;
@@ -71,11 +71,22 @@ public class Grid
                     _gridArray[x, y]._myType = TileType.Grassland;
                     _gameWarden.TileCounts[tileType]--;
                     tilesRemoved++;
+                    _gridArray[x, y].UpdateCurrentTileSprite();
+                }
+            }
+        }
+    }
 
-                    // THIS NEEDS TO CHANGE CAUSE SPRITE DOESNT CHANGE RIGHT NOW
-                    // fix how to grab sprite renderer component
-                    _gridArray[x,y].GetComponent<SpriteRenderer>().sprite 
-                        = Resources.Load<Sprite>($"Sprites/{tileType.ToString()}");
+    public void GrayOutChurchTiles()
+    {
+        for(int x = 0; x < _gridArray.GetLength(0); x++)
+        {
+            for( int y = 0; y < _gridArray.GetLength(1); y++)
+            {
+                if(_gridArray[x, y]._myType == TileType.Church)
+                {
+                    _gridArray[x, y].UpdateCurrentTileSprite(TileType.Church, true);
+                    return;
                 }
             }
         }

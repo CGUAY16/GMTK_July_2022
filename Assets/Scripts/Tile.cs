@@ -6,25 +6,24 @@ using UnityEngine.InputSystem;
 
 public class Tile : MonoBehaviour
 {
-    // enum TileType { Grassland, Lumberjack, Quarry, Tavern, Stable, Accountant, Church, Road };
-
     public int X;
     public int Y;
+    private float cdBetweenCollectionRoll = 5f;
     public GameWarden GameWarden;
 
     public int tavernNeighborCount = 0;
     public int stableNeighborCount = 0;
-    public float stableReductionPercent = 1;
+    public float stableReductionPercent = 1f;
 
-    private SpriteRenderer _myRenderer;
+    public SpriteRenderer MyRenderer { get; private set; }
     public TileType _myType = TileType.Grassland;
     private bool _canRoll = true;
 
     void Awake()
     {
-        _myRenderer = gameObject.AddComponent<SpriteRenderer>();
-        _myRenderer.transform.localPosition = new Vector3(0,0,0);
-        _myRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
+        MyRenderer = gameObject.AddComponent<SpriteRenderer>();
+        MyRenderer.transform.localPosition = new Vector3(0,0,0);
+        MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
     }
 
     void Update()
@@ -39,33 +38,21 @@ public class Tile : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (GameWarden.HeldTile!=-1&&GameWarden.HeldTile!=(int)_myType)
+            // if player holding tile && heldtile is not equal to this tile's type, then...;
+            if (GameWarden.HeldTile != -1 && GameWarden.HeldTile != (int)_myType)
             {
                 _myType = (TileType)GameWarden.HeldTile;
-                _myRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
+                MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
                 GameWarden.Register((TileType)GameWarden.HeldTile);
+                if(_myType == TileType.Church)
+                {
+                    GameWarden.churchesBoughtMultiplier++;
+                }
                 GameWarden.ClearHeld();
             }
         }
     }
     
-    void Iterate()
-    {
-        if ((int)_myType < System.Enum.GetNames(typeof(TileType)).Length - 1)
-            _myType++;
-        else
-            _myType = TileType.Grassland;
-        _myRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
-    }
-
-    void Deiterate()
-    {
-        if ((int)_myType > 0)
-            _myType--;
-        else
-            _myType = TileType.Road;
-    }
-
     void CheckNeighborsForTaverns()
     {
         tavernNeighborCount = 0;
@@ -125,17 +112,14 @@ public class Tile : MonoBehaviour
             if (GameWarden._grid._gridArray[X, Y - 1]._myType == TileType.Stable) // S
                 stableNeighborCount++;
 
+
+        // stable percent calc.
         stableReductionPercent = 1 - (0.1f * stableNeighborCount);
     }
 
     int Roll()
     {
         return (int)Mathf.Floor(Random.Range(1f,6f));
-    }
-
-    public override string ToString()
-    {
-        return _myType.ToString();
     }
 
     IEnumerator WorkTile(string resource)
@@ -151,7 +135,96 @@ public class Tile : MonoBehaviour
         {
             GameWarden.GatherCrystal(Roll() + tavernNeighborCount);
         }
-        yield return new WaitForSeconds(5f * stableReductionPercent);
+        yield return new WaitForSeconds(cdBetweenCollectionRoll * stableReductionPercent);
         _canRoll = true;
+    }
+
+    public void UpdateCurrentTileSprite()
+    {
+        switch (_myType)
+        {
+            case TileType.Grassland:
+                {
+                    MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
+                    break;
+                }
+            case TileType.Lumberjack:
+                {
+                    MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
+                    break;
+                }
+            case TileType.Quarry:
+                {
+                    MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
+                    break;
+                }
+            case TileType.Tavern:
+                {
+                    MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
+                    break;
+                }
+            case TileType.Stable:
+                {
+                    MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
+                    break;
+                }
+            case TileType.Accountant:
+                {
+                    MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
+                    break;
+                }
+            case TileType.Church:
+                {
+                    MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{_myType.ToString()}");
+                    break;
+                }
+        }
+    }
+
+    public void UpdateCurrentTileSprite(TileType type, bool faded)
+    {
+        switch (type)
+        {
+            case TileType.Grassland:
+                {
+                    MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{type.ToString()}");
+                    break;
+                }
+            case TileType.Lumberjack:
+                {
+                    MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{type.ToString()}");
+                    break;
+                }
+            case TileType.Quarry:
+                {
+                    MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{type.ToString()}");
+                    break;
+                }
+            case TileType.Tavern:
+                {
+                    MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{type.ToString()}");
+                    break;
+                }
+            case TileType.Stable:
+                {
+                    MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{type.ToString()}");
+                    break;
+                }
+            case TileType.Accountant:
+                {
+                    MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{type.ToString()}");
+                    break;
+                }
+            case TileType.Church:
+                {
+                    if (faded)
+                    {
+                        MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/FadedChurch");
+                    }
+                    else
+                        MyRenderer.sprite = Resources.Load<Sprite>($"Sprites/{type.ToString()}");
+                    break;
+                }
+        }
     }
 }

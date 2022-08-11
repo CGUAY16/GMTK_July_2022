@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class KingsDice_Behavior : MonoBehaviour
 {
+    
     public bool isTaxSeason = false;
     public GameObject KingsDicePanel;
     public Image Dice1;
@@ -33,23 +35,11 @@ public class KingsDice_Behavior : MonoBehaviour
     public Sprite defaultEmpty;
     public SoundData soundDataRef;
 
-    private void Awake()
-    {
-        
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         if (isTaxSeason)
         {
-            // if tile count in dictionary is == 0, then we game over the player.
             isTaxSeason = false;
             gameWarden._grid.ToggleSprites();
             StartCoroutine(BehaviorLoop());
@@ -58,14 +48,14 @@ public class KingsDice_Behavior : MonoBehaviour
 
     public int PickRandomBuilding()
     {
-        int randomNum = (int)Mathf.Floor(Random.Range(1f, 6f)) - 1;
+        int randomNum = (int)Mathf.Floor(Random.Range(1f, 5f)) - 1;
         Dice1.sprite = kingsDiceSpriteList[randomNum];
         return randomNum;
     }
     
     public int PickRandomNum()
     {
-        int random = (int)Mathf.Floor(Random.Range(1f, 6f)) - 1;
+        int random = (int)Mathf.Floor(Random.Range(1f, 4f)) - 1;
         Dice2.sprite = kingsDiceSpriteList2[random];
         return random + 1;
     }
@@ -82,8 +72,15 @@ public class KingsDice_Behavior : MonoBehaviour
         int randNum = PickRandomNum();
         yield return new WaitForSeconds(2f);
 
-        gameWarden._grid.RemoveTiles(randNum, KingsChoice);
         // code that applies the removal of buildings
+        gameWarden._grid.RemoveTiles(randNum, KingsChoice);
+
+        //if there are no more buildings left, game over the player.
+        if (gameWarden.IsTheGridEmptyOfBuildings())
+        {
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene(SceneChange.GameOver.ToString());
+        }
         yield return new WaitForSeconds(2.25f);
 
         SoundManager.PlayMusic(SoundManager.MusicType.GameplayLoop, soundDataRef.musicFiles);
@@ -91,6 +88,7 @@ public class KingsDice_Behavior : MonoBehaviour
         KingsDicePanel.SetActive(false);
         TotalTimeRef.UnPauseTimer();
         TaxTimeRef.RestartTimer();
+        gameWarden.UpdateTaxAmt();
         gameWarden.isItTaxTime = true;
     }
 
